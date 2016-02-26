@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="/static/js/angular-1.0.1.min.js"></script> 
+
+<script>
+var app = angular.module('myApp', []);
+     app.controller('myCtrl', function($scope) {
+    $scope.firstName= "John";
+    $scope.lastName= "Doe";
+});
+</script>
+
+</head>
+<body>
+  {{str}}
+<p>尝试修改以下表单。</p>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+名: <input type="text" ng-model="firstName"><br>
+姓: <input type="text" ng-model="lastName"><br>
+<br>
+
+
+<!--解决flask  jinja2和angularJS变量冲突的方法-->
+ {% raw %}
+  姓名: {{firstName + " " + lastName}}
+ {% endraw %}
+
+</div>
+
+
+
+</body>
+</html>
