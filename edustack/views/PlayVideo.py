@@ -12,8 +12,6 @@ import json
 
 PlayVideo = Blueprint('PlayVideo', __name__)
 
-
-
 #http://localhost:5000/PlayVideo/PlayVideo/
 @PlayVideo.route('/AngularJS_Hello/')
 def mAngularJS_Hello():
@@ -23,13 +21,13 @@ def mAngularJS_Hello():
 @PlayVideo.route('/PlayVideo/')
 def mPlayVideo():
 	#Playvideos=u'欢迎吴文相光临！'
-	Playvideos= u'''{videoname: '/static/PlayVideoFils/video/美女杠铃.mp4' ,img:'/static/PlayVideoFils/img/p1.jpg',playnum:'65',intvideo: '支持中文1'},
-	 {videoname: '/static/PlayVideoFils/video/美女杠铃.mp4',img:'/static/PlayVideoFils/img/p3.jpg',playnum:'89',intvideo:'支持中文2'}, 
-     {videoname: '/static/PlayVideoFils/video/美女杠铃.mp4' ,img:'/static/PlayVideoFils/img/p3.jpg',playnum:'88',intvideo: '支持中文3'},
-	 {videoname: '/static/PlayVideoFils/video/美女杠铃.mp4' , img:'/static/PlayVideoFils/img/p4.jpg', playnum:'68',intvideo: '支中持文4'},	
-	 {videoname: '/static/PlayVideoFils/video/美女杠铃.mp4',img:'/static/PlayVideoFils/img/p3.jpg',playnum:'89',intvideo:'支持中文2'}, 
-     {videoname: '/static/PlayVideoFils/video/美女杠铃.mp4' ,img:'/static/PlayVideoFils/img/p3.jpg',playnum:'88',intvideo: '支持中文3'},
-	 {videoname: '/static/PlayVideoFils/video/美女杠铃.mp4' , img:'/static/PlayVideoFils/img/p4.jpg', playnum:'68',intvideo: '支中持文4'},	'''
+	Playvideos= u'''{videoname: '/static/PlayVideoFils/video/范冰冰认李晨为最后男友 男方承诺必大婚.mp4' ,img:'/static/PlayVideoFils/img/p1.jpg',playnum:'65',intvideo: '支持中文1'},
+	 {videoname: '/static/PlayVideoFils/video/布娃娃.mp4',img:'/static/PlayVideoFils/img/p1.jpg',playnum:'89',intvideo:'支持中文2'}, 
+     {videoname: '/static/PlayVideoFils/video/美女杠铃.mp4' ,img:'/static/PlayVideoFils/img/p1.jpg',playnum:'88',intvideo: '支持中文3'},
+	 {videoname: '/static/PlayVideoFils/video/范冰冰认李晨为最后男友 男方承诺必大婚.mp4' , img:'/static/PlayVideoFils/img/p1.jpg', playnum:'68',intvideo: '支中持文4'},	
+	 {videoname: '/static/PlayVideoFils/video/布娃娃.mp4',img:'/static/PlayVideoFils/img/p1.jpg',playnum:'89',intvideo:'支持中文2'}, 
+     {videoname: '/static/PlayVideoFils/video/美女杠铃.mp4' ,img:'/static/PlayVideoFils/img/p1.jpg',playnum:'88',intvideo: '支持中文3'},
+	 {videoname: '/static/PlayVideoFils/video/Flask 操作数据库.mp4' , img:'/static/PlayVideoFils/img/p1.jpg', playnum:'68',intvideo: '支中持文4'},	'''
 
 
 	return render_template(r"PlayVideo/PlayVideo.html",Playvideos=Playvideos)

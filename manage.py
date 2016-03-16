@@ -37,6 +37,8 @@ def opt_init():
     from edustack.models import User
     from edustack.models import Blog
     from edustack.models import Comment
+    from edustack.models import Playvideo
+
     def init_user(name, email, admin=False):
         emailHash = hashlib.md5(email).hexdigest()
         password = emailHash

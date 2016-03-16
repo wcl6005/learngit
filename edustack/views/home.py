@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''
 Created on 2016-01-17
 
@@ -11,6 +12,8 @@ from edustack.models import User
 from edustack.models import Blog
 from edustack.views.api import _get_blogs_by_page
 
+from edustack.models import Playvideo
+
 home = Blueprint('home', __name__)
 
 def _get_page_index():
@@ -21,8 +24,6 @@ def _get_page_index():
         pageIndex = 1
     return pageIndex
 
-
-#http://localhost:5000/home/index/
 @home.route('/')
 @home.route('/index/')
 def index():
@@ -30,22 +31,20 @@ def index():
     blogs, page = _get_blogs_by_page(pageIndex)
     return render_template(r"home/blogs.html", blogs=blogs, page=page)
 
-
-
-#http://localhost:5000/home/register/
 @home.route('/register/')
 def register():
     return render_template(r"home/register.html")
 
-
-#http://localhost:5000/home/signin/
 @home.route('/signin/')
 def signin():
     return render_template(r"home/signin.html")
-
-
 
 @home.route('/signout/')
 def signout():
     logout_user()
     return redirect(url_for('home.index'))
+
+@home.route('/')
+@home.route('/regplay/')
+def mregplay():
+    return render_template(r"home/regplay.html")

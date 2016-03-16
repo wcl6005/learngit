@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 '''
 Created on 2016-02-17
 
@@ -21,6 +23,7 @@ from edustack.models import Blog
 from edustack.models import Page
 from edustack.models import Comment
 from flask_login import current_user
+from edustack.models import Playvideo
 
 
 api = Blueprint('api', __name__)
@@ -49,16 +52,26 @@ postUserParser = reqparse.RequestParser()
 for i in postUserList:
     postUserParser.add_argument(i)
 
+
+postPlayvideoList = ['playnume', 'intvideo']
+postPlayvideoParser = reqparse.RequestParser()
+for i in postPlayvideoList:
+    postPlayvideoParser.add_argument(i)
+
+
+
 _RE_EMAIL = re.compile(r'^[a-z0-9\.\-\_]+\@[a-z0-9\-\_]+(\.[a-z0-9\-\_]+){1,4}$')
 _RE_MD5 = re.compile(r'^[0-9a-f]{32}$')
 
 class API_Users(Resource):
     def get(self):
+
         users = User.query.all()
         for user in users:
-            user.password = '######'
+            user.password = '******'
         return {'users': [toDict(u) for u in users]}
     def post(self):
+
         args = postUserParser.parse_args()
         assertArgsNotEmpty(args, postUserList)
 
@@ -71,6 +84,7 @@ class API_Users(Resource):
         if not _RE_MD5.match(password):
             abortValueError('password')
 
+        #判断数据库中email是否被注册过
         user = User.query.filter_by(email=email).first()
         if user:
             abort(400, message="Email is already in use.")
@@ -166,6 +180,39 @@ class API_Blogs(Resource):
         db.session.add(blog)
         db.session.commit()
         return {'blog': toDict(blog)}
+
+
+class API_Playvideos(Resource):
+    def get(self):
+
+        playvideos = Playvideo.query.all()
+        for playvideo in playvideos:
+            return {'playvideos': [toDict(u) for u in playvideos]}
+    def post(self):
+
+        args = postPlayvideoParser.parse_args()
+        #assertArgsNotEmpty(args, postUserList)
+
+        playnume = args['playnume'].strip()
+        intvideo = args['intvideo'].strip()
+
+
+        #判断数据库中email是否被注册过
+        #user = User.query.filter_by(email=email).first()
+        #if user:
+        #    abort(400, message="Email is already in use.")
+        #abort(8000, message="ok!")
+        
+        playvideo = Playvideo(playnume=playnume, intvideo=intvideo,)
+
+        db.session.add(playvideo)
+        db.session.commit()
+        #login.login_user(playvideo)
+ 
+        return {'playvideo': toDict(playvideo)}
+api_res.add_resource(API_Playvideos, '/playvideos')      
+
+
 
 api_res.add_resource(API_Users, '/users')
 api_res.add_resource(API_User, '/users/<int:id>')

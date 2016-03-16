@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''
 Created on 2016-01-13
 
@@ -19,7 +20,6 @@ class User(db.Model):
     admin = db.Column(db.Boolean)
     image = db.Column(db.String(500))
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
-    
     blogs = db.relationship('Blog', backref='user', lazy='dynamic')
     comments = db.relationship('Comment', backref='user', lazy='dynamic')
 
@@ -156,3 +156,26 @@ class Page(object):
 # 
 #     def __repr__(self):
 #         return '<LocalAuth {!r}>'.format(self.username)
+#播放视频 数据模型
+#videoname视频文件  img缩位图  playnum播放次数   intvideo视频简介
+class Playvideo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    #下面两条不会？
+    #videoname = models.FileField(upload_to = './static/PlayVideoFils/video/')#创建该目录,存放上传的视频文件  django
+
+    #img = models.FileField(upload_to = './static/PlayVideoFils/img/') #创建该目录,存放上传的缩位图   django
+
+    #playnum = models.CharField(max_length = 20)  django
+    playnum = db.Column(db.String(20))
+
+    #intvideo = models.CharField(max_length = 1000)   django
+    intvideo = db.Column(db.String(1000))
+       
+    #def __str__(self):
+    #    return self.videoname
+    #def __str__(self):
+    #    return self.img
+    def __str__(self):
+        return self.playnum
+    def __str__(self):
+        return self.intvideo

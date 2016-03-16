@@ -1,6 +1,21 @@
 // abbyBlog.js
-
 function showError(err) {
+    var alert = $('div.uk-alert-danger');
+    if (err) {
+        alert.text(err.message || err.error || err).removeClass('uk-hidden').show();
+        try {
+            if (alert.offset().top < ($(window).scrollTop() - 41)) {
+                $('html,body').animate({scrollTop: alert.offset().top - 41});
+            }
+        }
+        catch (e) {}
+    }
+    else {
+        alert.addClass('uk-hidden').hide().text('');
+    }
+}
+
+function showError1(err) {
     var alert = $('div.uk-alert-danger');
     if (err) {
         alert.text(err.message || err.error || err).removeClass('uk-hidden').show();
@@ -33,7 +48,7 @@ function _ajax(method, url, data, callback) {
 }
 
 function getApi(url, data, callback) {
-    if (arguments.length === 2) {   // arguments ???
+    if (arguments.length === 2) {
         callback = data;
         data = {};
     }
@@ -41,6 +56,7 @@ function getApi(url, data, callback) {
 }
 
 function postApi(url, data, callback) {
+    //showError('err')
     if (arguments.length === 2) {
         callback = data;
         data = {};
